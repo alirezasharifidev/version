@@ -8,11 +8,11 @@ Many modern applications are hardened against simple DLL forwarding, which relie
 
 This project solves that problem by taking manual control:
 
-1. It explicitly loads the legitimate `version.dll` from a secure system directory (`C:\Windows\System32`).
+1.  It explicitly loads the legitimate `version.dll` from a secure system directory (`C:\Windows\System32`).
 
-2. It uses `GetProcAddress` to dynamically retrieve the memory address of each function it needs.
+2.  It uses `GetProcAddress` to dynamically retrieve the memory address of each function it needs.
 
-3. It creates a wrapper function for each original function. When the target program calls a function, the wrapper simply forwards the call to the real function's address.
+3.  It creates a wrapper function for each original function. When the target program calls a function, the wrapper simply forwards the call to the real function's address.
 
 This robust process ensures that all API calls are correctly handled by the legitimate DLL, allowing the program to function as expected while your custom code executes.
 
@@ -49,3 +49,6 @@ The core of the project is implemented in `dllmain.cpp` using a series of macros
 * `Load(LPVOID lpParam)`: This function contains your payload. It is designed to be called by `DllMain` on a new thread to avoid potential deadlocks.
 
 Feel free to customize the `Load(LPVOID lpParam)` function to include your own code or payload.
+
+---
+This project is provided for educational purposes only.
